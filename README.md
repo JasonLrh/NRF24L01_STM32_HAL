@@ -1,0 +1,62 @@
+NRF24L01+ Library for any platform
+=====
+> this libarary file is originally developed for STM32's HAL framwork  
+> but very easy for you to imagrate it to any other platform(->arm's processor,->Linux)
+
+thank for the healthy state machine `nrf_mode` `nrf_change_device_mode(mod_to_change)` , any step of app do is under monitor.if something unexpected happened , app can know it for the frist time
+
+> (for example , when nrf24l01+ is not in sleep mode or powerdown mode,the action that app's write register will not succeed. but SPI bus will work normally so you can't know that action is fail)
+
+how to use
+---------
+> init :  
+> ~~~
+> nrf_set_enable(NRF_MODE_Power_Off);
+> nrf_config_rx_channel(chn,rf_addr_read_of,pack_size,address_of_your_rx_buff);
+> nrf_config_tx_address(rf_addr_write_to);
+> nrf_set_enable(NRF_MODE_(RX|TX));
+> ~~~
+
+> loop : (or rtos loop,system call.etc)  
+> rx:
+> ~~~
+> // check interrupt and read from rx buffer
+> ~~~
+> tx:
+> ~~~
+> nrf_load_tx(data,size);
+> // wait for interrupt to tell whether it's succeed or fail
+> ~~~
+
+> interrupt handler :  
+> rx : 
+> ~~~
+> int chn = nrf_interrupt_handler();
+> if(chn >= 0 && chn <= 5){
+>   ... // tell app to read rx buffer;
+> }else{
+>   ... // un-define error
+> }
+> ~~~
+> tx :
+> ~~~
+> int inf = nrf_interrupt_handler();
+> if(inf == 6){
+>   ... // success , let app know to trancemit next package
+> }else if(inf == 7){
+>   ... //retry overtimes
+> }else {
+>   ... // un-define error
+> }
+> ~~~
+
+how to imagrate
+--------
+1,open `nrf24l01p.c`
+2,edit defines CSN,CE,delay,write,read
+
+> do not edit any other part of this file
+
+how to develop
+---------
+> I think , as a developer , you must know know it
