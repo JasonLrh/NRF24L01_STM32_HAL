@@ -10,7 +10,7 @@ thank for the healthy state machine `nrf_mode` `nrf_change_device_mode(mod_to_ch
 how to use
 ---------
 > init :  
-> ~~~
+> ~~~c++
 > nrf_set_enable(NRF_MODE_Power_Off);
 > nrf_config_rx_channel(chn,rf_addr_read_of,pack_size,address_of_your_rx_buff);
 > nrf_config_tx_address(rf_addr_write_to);
@@ -19,18 +19,18 @@ how to use
 
 > loop : (or rtos loop,system call.etc)  
 > rx:
-> ~~~
+> ~~~c++
 > // check interrupt and read from rx buffer
 > ~~~
 > tx:
-> ~~~
+> ~~~c++
 > nrf_load_tx(data,size);
 > // wait for interrupt to tell whether it's succeed or fail
 > ~~~
 
 > interrupt handler :  
 > rx : 
-> ~~~
+> ~~~c++
 > int chn = nrf_interrupt_handler();
 > if(chn >= 0 && chn <= 5){
 >   ... // tell app to read rx buffer;
@@ -39,7 +39,7 @@ how to use
 > }
 > ~~~
 > tx :
-> ~~~
+> ~~~c++
 > int inf = nrf_interrupt_handler();
 > if(inf == 6){
 >   ... // success , let app know to trancemit next package
