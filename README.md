@@ -60,8 +60,5 @@ how to imagrate
 
 how to develop
 ---------
-<<<<<<< HEAD
 > I think , as a developer , you must know it
-=======
-> I think , as a developer , you must know know it
->>>>>>> 72e80351410d3ad302c0902913c0888f0d65c568
+
