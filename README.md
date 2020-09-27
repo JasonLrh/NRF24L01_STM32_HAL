@@ -1,5 +1,6 @@
 NRF24L01+ Library for any platform
 =====
+![img](https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1421768554,2275816689&fm=26&gp=0.jpg)
 > this libarary file is originally developed for STM32's HAL framwork  
 > but very easy for you to imagrate it to any other platform(->arm's processor,->Linux)
 
@@ -59,4 +60,4 @@ how to imagrate
 
 how to develop
 ---------
-> I think , as a developer , you must know know it
+> I think , as a developer , you must know it
